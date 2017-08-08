@@ -77,6 +77,11 @@ decided to answer the following questions.
 
 1. How does a sentiment impact an industry as a whole?
 
+2. Which person has the highest impact on the stock market based on their social media
+profile?
+
+3. How is the stock market performing before and after the 2016 presidential elections?
+
 
 
 
@@ -86,32 +91,24 @@ decided to answer the following questions.
 
 ### File Descriptions
 pystock-data-gh-pages: Original stock input file
+
 tweet_dumper.py: code to download tweets
+
 entity.py: code to extract tweets that includes an organization entity
+
 sentiment.py: code to find the sentiment of each tweet
+
 data_fusion.py: code to combine stock market data corresponding to company and date
+
 read_data.py: create parquet files for stock data and twitter sentimental analysis
+
 analysis.py: combine stock market and twitter data and perform regression
+
 positive_negative_counts.py: Get the True Positive, True Negative, False Positive, False Negative counts for each person of interest
+
 Regression.py: Regression with 3 fold cross validation on the combined to stock and twitter data to predict percentage change
 
 We have provided the below input files for final analysis in parquet format as it's easier to process 
 stock.parquet: Processed data in parquet format
 twitter_results.parquet: Processed twitter results in parquet format
-
-To perform analysis, run the following commands:
-1. Copy the zip file into local gateway
-scp code.zip <userid>@gateway.sfucloud.ca:
-
-2. Unzip the zip file
-unzip code.zip
-
-3. Copy the parquet file to hdfs
-hdfs dfs -copyFromLocal /home/<userid>/*.parquet
-
-4. Obtain the count of True Positive, True Negative, False Positive, False Negative
-spark-submit --master=yarn-client --executor-memory=4g --num-executors=25 --executor-cores=1 positive_negative_counts.py
-
-5. Perform regression (This is not the providing the right results as the number of features is very less to predict the stock prices)
-spark-submit --master=yarn-client --executor-memory=4g --num-executors=25 --executor-cores=1 Regression.py
 
